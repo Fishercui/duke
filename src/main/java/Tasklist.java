@@ -35,5 +35,9 @@ public class Tasklist {
         return tasks.size();
     }
 
+    public boolean isEmpty() {
+        return this.tasks.isEmpty();
+    }
+
 
 }
