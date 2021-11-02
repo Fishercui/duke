@@ -18,8 +18,7 @@ public class Greet {
 
 
         while (!line.equals("bye")) {
-            System.out.print("____________________________________________________________\n");
-            System.out.println(line);
+
             System.out.print("____________________________________________________________\n");
 
             if (line.equals("list")) {
@@ -46,7 +45,7 @@ public class Greet {
                             System.out.println("Now you have " + tasklist.getlistsize() + " tasks in the list");
                             System.out.print("____________________________________________________________\n");
                         } catch (Exception e) {
-                            throw new DukeException(("OOPS!!! The description cannot be empty."));
+                            throw new DukeException(("OOPS!!! The description a todo cannot be empty."));
                         }
                     } else if (input.equals("deadline")) {
                         System.out.println("Got it. I've added this task:");
@@ -68,7 +67,14 @@ public class Greet {
                         tasklist.addtolist(newtask);
                         System.out.println("Now you have " + tasklist.getlistsize() + " tasks in the list");
                         System.out.print("____________________________________________________________\n");
-                    } else {
+                    } else if(input.equals("delete")){
+                        int deleteindex = Integer.valueOf(line.split(" ")[1]);
+                        Task deletetask = tasklist.getTask(deleteindex);
+                        tasklist.deleteTask(deleteindex);
+                        System.out.println("Noted. I've removed this task:");
+                        System.out.println(deletetask);
+                        System.out.println("Now you have " + String.valueOf(tasklist.getlistsize()) + " tasks in the list.");
+                    }else {
                         throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-{");
                     }
                 } catch (DukeException e1) {
