@@ -1,16 +1,18 @@
-public class Task {
+package task;
+
+public class task {
+
     protected String description;
     protected boolean isDone;
 
-    public Task(String description) {
+    public task(String description) {
         this.description = description;
         this.isDone = false;
     }
 
-    public String getName(){
-
-        return  description;
-
+    public task(String description,boolean isDone) {
+        this.description = description;
+        this.isDone = isDone;
     }
 
     public void markdone(){
@@ -26,9 +28,13 @@ public class Task {
         return isDone;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    @Override
     public String toString(){
         String mystring = getDoneIcon() + " " + description;
         return mystring;
     }
-
 }
