@@ -1,33 +1,39 @@
 package task;
+import java.util.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Iterator;
 
-public class TaskList {
-    private final List<task> taskList=new ArrayList<>();
+
+public class TaskList implements Iterable<Task>{
+    private final List<Task> taskList=new ArrayList<>();
 
     public TaskList(){ }
 
-    public TaskList(task[] tasks){
-        final List<task> initialTasks= Arrays.asList(tasks);
+    public TaskList(Task[] Tasks){
+        final List<Task> initialTasks= Arrays.asList(Tasks);
         taskList.addAll(initialTasks);
     }
 
-    public TaskList(Collection<task> tasks) {
-        taskList.addAll(tasks);
+    public TaskList(Collection<Task> Tasks) {
+        taskList.addAll(Tasks);
     }
 
-    public void addTask(task toAdd) throws DuplicateTaskException {
+    public TaskList(TaskList load) {
+
+    }
+
+    public void addTask(Task toAdd) throws DuplicateTaskException {
         if(contains(toAdd)){
             throw new DuplicateTaskException();
         }
         taskList.add(toAdd);
     }
 
-    public boolean contains(task tasks){
-        for(task task : taskList){
+    public boolean contains(Task tasks){
+        for(Task task : taskList){
             if(task.equals(tasks)){
                 return true;
             }
@@ -35,11 +41,11 @@ public class TaskList {
         return false;
     }
 
-    public task TaskIdx(int taskIdx){
+    public Task TaskIdx(int taskIdx){
         return taskList.get(taskIdx-1);
     }
 
-    public void removeTask(task tasks){
+    public void removeTask(Task tasks){
         taskList.remove(tasks);
     }
 
@@ -51,7 +57,7 @@ public class TaskList {
         return taskList.size();
     }
 
-    public TaskList showAllTasks(){
+    public TaskList getAllTasks(){
         return new TaskList(taskList);
     }
 
@@ -59,6 +65,10 @@ public class TaskList {
         taskList.clear();
     }
 
+    @Override
+    public Iterator<Task> iterator() {
+        return taskList.iterator();
+    }
 
     public static class DuplicateTaskException extends Exception{
         public DuplicateTaskException() { super("There is a same task which already existed in the task list.");  }

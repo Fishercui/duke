@@ -1,9 +1,15 @@
 package task;
 
-public class ToDo extends task{
+import java.time.LocalDateTime;
+
+public class ToDo extends Task {
 
     public ToDo(String content) {
         super(content);
+    }
+
+    public ToDo(String description, boolean isDone, LocalDateTime finishTime) {
+        super(description,isDone,finishTime);
     }
 
     public ToDo editContent (String newContent) {
@@ -11,6 +17,8 @@ public class ToDo extends task{
         newTask.isDone = this.isDone;
         return newTask;
     }
+
+
 
     @Override
     public String toString() {

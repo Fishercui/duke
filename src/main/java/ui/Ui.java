@@ -14,6 +14,10 @@ public class Ui {
             + "|____/ \\__,_|_|\\_\\___|\n";
     private static final String LOADING_ERROR_MSG="Failed to load this Duke Application from storage file.";
 
+    public Ui() {
+        this(System.in, System.out);
+    }
+
     public Ui(InputStream in, PrintStream out) {
         this.in = new Scanner(in);
         this.out = out;
