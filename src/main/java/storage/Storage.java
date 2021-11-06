@@ -15,11 +15,9 @@ public class Storage {
 
     public final Path path;
 
-
     public Storage() throws InvalidStorageFilePathException {
         this(DEFAULT_STORAGE_FILEPATH);
     }
-
 
     public Storage(String filePath) throws InvalidStorageFilePathException{
         path= Paths.get(filePath);
@@ -28,41 +26,10 @@ public class Storage {
         }
     }
 
-
     private static boolean isValidPath(Path filePath) {
         return filePath.toString().endsWith(".txt");
     }
 
-
-    public void save(TaskList taskList) throws StorageOperationException{
-        try{
-            List<String> encodedTaskList=TaskListEncorder.encodeTaskList(taskList);
-            Files.write(path,encodedTaskList);
-        }catch (IOException ioe)
-        {
-            throw new StorageOperationException("Saving went wrong");
-        }
-
-    }
-
-
-
-    public TaskList load() throws StorageOperationException, IOException {
-
-        if (!Files.exists(path) || !Files.isRegularFile(path)) {
-            Files.createDirectories(path.getParent());
-            Files.createFile(path);
-            return new TaskList();
-        }
-        try {
-            return TaskListDecoder.decodeTaskList(Files.readAllLines(path));
-        }catch (IOException ioe){
-            throw new StorageOperationException("Loading went wrong");
-        }catch (IllegalValueException ive){
-            throw new StorageOperationException("File contains incorrect format.");
-        }
-
-    }
 
 
     public static class InvalidStorageFilePathException extends IllegalValueException {
@@ -71,13 +38,9 @@ public class Storage {
         }
     }
 
-
-
     public static class StorageOperationException extends Exception {
         public StorageOperationException(String message) {
             super(message);
         }
     }
-
-
 }

@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 
 public class ToDo extends Task {
 
+    private static final String TASK_TYPE="T";
+
+
     public ToDo(String content) {
         super(content);
     }
@@ -18,7 +21,10 @@ public class ToDo extends Task {
         return newTask;
     }
 
-
+    @Override
+    public String getTaskType() {
+        return TASK_TYPE;
+    }
 
     @Override
     public String toString() {
