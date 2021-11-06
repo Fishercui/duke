@@ -1,12 +1,12 @@
-import command.*;
-import storage.*;
-import task.*;
-import ui.Ui;
+import java.util.Scanner;
+import command;
+import command.exitcommand;
+import exception.DukeException;
 import parser.parser;
-import storage.Storage.StorageOperationException;
-import storage.Storage.InvalidStorageFilePathException;
+import storage.Storage;
+import task.TaskList;
+import ui.Ui;
 
-import java.io.IOException;
 
 public class Duke {
 
@@ -16,17 +16,13 @@ public class Duke {
 
     public Duke(String filePath) {
         ui = new Ui();
+        storage = new Storage(filePath);
         try {
-            storage = new Storage(filePath);
             tasks = new TaskList(storage.load());
-        } catch (StorageOperationException | InvalidStorageFilePathException | IOException e) {
+        } catch (DukeException e) {
             ui.showLoadingError();
             tasks = new TaskList();
         }
-    }
-
-    public static void main(String[] args) {
-        new Duke(System.getProperty("user.dir")+"/data/duke.txt").run();
     }
 
     public void run() {
@@ -36,12 +32,10 @@ public class Duke {
             try {
                 String fullCommand = ui.readCommand();
                 ui.showLine(); // show the divider line ("_______")
-                Command c = new parser().parse(fullCommand);
-                c.setTask(tasks);
-                c.execute();
-                storage.save(tasks);
-                isExit = ExitCommand.isExit(c);
-            } catch (Exception e) {
+                Command c = Parser.parse(fullCommand);
+                c.execute(tasks, ui, storage);
+                isExit = c.isExit();
+            } catch (DukeException e) {
                 ui.showError(e.getMessage());
             } finally {
                 ui.showLine();
@@ -49,7 +43,9 @@ public class Duke {
         }
     }
 
-
+    public static void main(String[] args) {
+        new Duke("data/tasks.txt").run();
+    }
 }
 
 
