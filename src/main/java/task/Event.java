@@ -1,16 +1,46 @@
 package task;
 
-public class Event extends task {
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-    protected String by;
+public class Event extends Task {
 
-    public Event(String description, String by) {
+    protected LocalDateTime at;
+    private static final String TASK_TYPE="E";
+
+    public Event(String description,LocalDateTime at) {
         super(description);
-        this.by = by;
-
+        this.at=at;
     }
+
+    public Event(String description,LocalDateTime at, boolean isDone,LocalDateTime finishTime){
+        super(description,isDone,finishTime);
+        this.at=at;
+    }
+
+
+    @Override
+    public String getTaskType() {
+        return TASK_TYPE;
+    }
+
+    @Override
+    public LocalDateTime getTaskTime() {
+        return at;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+
+        if (! super.equals(obj)) return false;
+        if (this.getClass() != obj.getClass())
+            return false;
+        Event e = (Event) obj;
+        return this.at.equals(e.at);
+    }
+
     @Override
     public String toString() {
-        return "[" + "E" + "]" + super.toString() + " (at: " + by + ")";
+        return "[E]" + super.toString() + " (at: " + at.format(DateTimeFormatter.ofPattern("MMM d yyyy HH:mm")) + ")";
     }
 }

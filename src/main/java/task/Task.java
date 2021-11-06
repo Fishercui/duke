@@ -1,26 +1,46 @@
 package task;
 
-public class task {
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+public class Task {
 
     protected String description;
     protected boolean isDone;
+    private LocalDateTime taskTime=LocalDateTime.of(2000,1,1,0,0);
+    protected LocalDateTime finishTime;
+    private static final String TASK_TYPE="A";
 
-    public task(String description) {
+    public Task(String description) {
         this.description = description;
         this.isDone = false;
     }
 
-    public task(String description,boolean isDone) {
+    public Task(String description,boolean isDone,LocalDateTime finishTime) {
+        this.description = description;
+        this.isDone = isDone;
+        if(this.isDone){
+            this.finishTime=finishTime;
+        }
+    }
+
+    public Task(String description, boolean isDone) {
         this.description = description;
         this.isDone = isDone;
     }
 
-    public void markdone(){
+    public LocalDateTime getFinishTime(){
+        return finishTime;
+    }
+
+    public void markdone(LocalDateTime finishTime){
         isDone = true;
+        this.finishTime = finishTime;
     }
 
     public String getDoneIcon() {
-        return (isDone ? "[X]" : "[ ]"); // mark done task with X
+        return (isDone ? "Done"+" : "+finishTime.format(DateTimeFormatter.ofPattern("MMM d yyyy HH:mm"))
+                : "X");// mark done task with X
     }
 
     public boolean getStatus(){
@@ -32,9 +52,18 @@ public class task {
         return description;
     }
 
+    public String getTaskType(){
+        return TASK_TYPE;
+    }
+
+    public LocalDateTime getTaskTime(){
+        return taskTime;
+    }
+
+
+
     @Override
     public String toString(){
-        String mystring = getDoneIcon() + " " + description;
-        return mystring;
+        return "["+getDoneIcon()+"] "+getDescription();
     }
 }
