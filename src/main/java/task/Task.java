@@ -39,8 +39,8 @@ public class Task {
     }
 
     public String getDoneIcon() {
-        return (isDone ? "Done"+" : "+finishTime.format(DateTimeFormatter.ofPattern("MMM d yyyy HH:mm"))
-                : "X");// mark done task with X
+        return (isDone ? "X"
+                : " ");// mark done task with X
     }
 
     public boolean getStatus(){
@@ -60,10 +60,20 @@ public class Task {
         return taskTime;
     }
 
-
-
     @Override
-    public String toString(){
-        return "["+getDoneIcon()+"] "+getDescription();
+    public boolean equals(Object obj) {
+
+        Task otherTask = (Task) obj;
+        return obj == this // short circuit if same object
+                || (obj instanceof Task // instanceof handles nulls
+                && otherTask.description.equals(this.description)
+                && otherTask.isDone == this.isDone
+                && otherTask.taskTime.equals(this.taskTime));
     }
+
+
+        @Override
+        public String toString(){
+            return "["+getDoneIcon()+"] "+getDescription();
+        }
 }
