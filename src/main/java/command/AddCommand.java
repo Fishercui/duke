@@ -5,7 +5,9 @@ import task.Task;
 
 
 public class AddCommand extends Command{
-
+    /**
+     * add a task to the list with the command keyword
+     */
     public static final String COMMAND_WORD1 = "todo";
     public static final String COMMAND_WORD2 = "deadline";
     public static final String COMMAND_WORD3 = "event";
@@ -13,9 +15,9 @@ public class AddCommand extends Command{
     public static final String HELP_MESSAGE=  "-- "+COMMAND_WORD1+": Adds a Todo Task to the task list. \n" +
             "<< Example: todo borrow book >>\n" +
             "-- "+ COMMAND_WORD2+": Adds a Deadline task to the task list.\n" +
-            "<< Example: return book by/2019-12-01 1200 >>\n" +
+            "<< Example: deadline return book by/2021-12-01 1200 >>\n" +
             "-- "+ COMMAND_WORD3+": Adds an Event task to the task list.\n" +
-            "<< Example: project meeting at/2019-12-01 1200 >>";
+            "<< Example: event project meeting at/2021-12-01 1200 >>";
     private final Task toAdd;
 
     public AddCommand(Task toAdd ) {
