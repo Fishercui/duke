@@ -6,7 +6,8 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD="find";
 
-    public static final String MESSAGE_USAGE= "||"+COMMAND_WORD+": finds the specific tasks based on the keywords you entered.\n";
+    public static final String HELP_MESSAGE= "-- "+COMMAND_WORD+": finds the specific tasks based on the keywords you entered.\n" +
+            "<< Example: find meeting >>";
 
 
     private final Set<String> keywords;
