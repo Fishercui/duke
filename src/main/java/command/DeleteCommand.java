@@ -1,7 +1,9 @@
 package command;
 
 public class DeleteCommand extends Command {
-
+    /**
+     * delete a task from the taskList based on the index.
+     */
     public static final String COMMAND_WORD="delete";
 
     public static final String HELP_MESSAGE="-- "+COMMAND_WORD+": delete task from the tasklist based on the task index.\n" +
