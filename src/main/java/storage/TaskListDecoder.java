@@ -11,7 +11,9 @@ import java.util.regex.Pattern;
 
 
 public class TaskListDecoder {
-
+    /**
+     * Decodes the storage data file into an {@code taskList} object.
+     */
     public static final Pattern To_Format=Pattern.compile("T[|](?<isDone>[01])[|](?<taskDesc>[^|]+)[|]" +
             "(?<finishTime>[^|]*)");
     public static final Pattern Deadline_Format=Pattern.compile("D[|](?<isDone>[01])" +
@@ -22,7 +24,11 @@ public class TaskListDecoder {
             "[|](?<taskDesc>[^|]+)" +
             "[|](?<planTime>[^|]+)[|]"+
             "(?<finishTime>[^|]*)");
-
+    /**
+     * Decodes {@code encodedTasklist} into an {@code TaskList} containing the decoded tasks.
+     *
+     * @throws IllegalValueException if any of the fields is invalid.
+     */
     public static TaskList decodeTaskList(List<String> encodedTasklist) throws IllegalValueException {
 
         final List<Task> decodedTasks = new ArrayList<>();

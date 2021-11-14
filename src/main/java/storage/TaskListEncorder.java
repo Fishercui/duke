@@ -8,7 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaskListEncorder {
-
+    /**
+     * Encodes the {@code taskList} object into a data file for storage.
+     * Encodes all the {@code Task} in the {@code toSave} into a list of decodable and string to store
+     */
     public static List<String> encodeTaskList(TaskList toSave){
         final List<String> encodedTasks= new ArrayList<>();
         for(int i=1;i<=toSave.getSize();i++){
