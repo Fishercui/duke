@@ -3,7 +3,9 @@ package command;
 import task.TaskList;
 
 public class Command {
-
+    /**
+     * Shows executable command.
+     */
     protected TaskList taskList;
     private int taskIdx = -1;
 
