@@ -14,7 +14,9 @@ public class Storage {
     public final Path path;
 
 
-
+    /**
+     * @throws InvalidStorageFilePathException if the given file path is invalid
+     */
     public Storage(String filePath) throws InvalidStorageFilePathException{
         path= Paths.get(filePath);
         if (!isValidPath(path)) {
@@ -22,12 +24,19 @@ public class Storage {
         }
     }
 
-
+    /**
+     * Returns true if the given path is acceptable as a storage file.
+     * The file path is considered acceptable if it ends with '.txt'
+     */
     private static boolean isValidPath(Path filePath) {
         return filePath.toString().endsWith(".txt");
     }
 
-
+    /**
+     * Saves the {@code taskList} data to the storage file.
+     *
+     * @throws StorageOperationException if there were errors.
+     */
     public void save(TaskList taskList) throws StorageOperationException{
         try{
             List<String> encodedTaskList=TaskListEncorder.encodeTaskList(taskList);
@@ -39,7 +48,12 @@ public class Storage {
 
     }
 
-
+    /**
+     * Loads the {@code taskList} data from this storage file, and then returns it.
+     * Returns an empty {@code taskList} if the file does not exist.
+     *
+     * @throws StorageOperationException if there were errors.
+     */
 
     public TaskList load() throws StorageOperationException, IOException {
 
