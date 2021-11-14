@@ -10,7 +10,9 @@ public class Task {
     private LocalDateTime taskTime=LocalDateTime.of(2000,1,1,0,0);
     protected LocalDateTime finishTime;
     private static final String TASK_TYPE=" ";
-
+    /**
+     * create task in the tasklist
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;
@@ -37,7 +39,10 @@ public class Task {
         isDone = true;
         this.finishTime = finishTime;
     }
-
+    /**
+     * get the displayed icon from isDone status
+     * @return a string icon to display the status
+     */
     public String getDoneIcon() {
         return (isDone ? "X"
                 : " ");// mark done task with X

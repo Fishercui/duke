@@ -10,7 +10,9 @@ public class Deadline extends Task {
     protected LocalDateTime by;
     private static final String TASK_TYPE="D";
 
-
+    /**
+     * create a deadline task
+     */
     public Deadline(String description, LocalDateTime by) {
         super(description);
         this.by=by;

@@ -7,7 +7,9 @@ public class Event extends Task {
 
     protected LocalDateTime at;
     private static final String TASK_TYPE="E";
-
+    /**
+     * create an event task
+     */
     public Event(String description,LocalDateTime at) {
         super(description);
         this.at=at;

@@ -2,6 +2,9 @@ package task;
 
 import java.time.LocalDateTime;
 
+/**
+ * It create a todoTask
+ */
 public class ToDo extends Task {
     private static final String TASK_TYPE = "T";
 
