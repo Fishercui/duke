@@ -1,7 +1,9 @@
 package command;
 
 public class ListCommand extends Command {
-
+    /**
+     * List all the tasks in the taskList.
+     */
     public static final String COMMAND_WORD="list";
 
     public static final String HELP_MESSAGE="-- "+COMMAND_WORD+": list the all the tasks." ;
