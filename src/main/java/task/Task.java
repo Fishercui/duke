@@ -9,7 +9,7 @@ public class Task {
     protected boolean isDone;
     private LocalDateTime taskTime=LocalDateTime.of(2000,1,1,0,0);
     protected LocalDateTime finishTime;
-    private static final String TASK_TYPE="A";
+    private static final String TASK_TYPE=" ";
 
     public Task(String description) {
         this.description = description;
