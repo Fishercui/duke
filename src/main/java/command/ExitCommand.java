@@ -1,7 +1,9 @@
 package command;
 
 public class ExitCommand extends Command {
-
+    /**
+     * Exit the program.
+     */
     public static final String COMMAND_WORD="bye";
 
     public static final String HELP_MESSAGE="-- "+COMMAND_WORD+": Exit the program and save to txt file";
