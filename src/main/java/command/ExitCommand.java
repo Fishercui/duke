@@ -4,7 +4,7 @@ public class ExitCommand extends Command {
 
     public static final String COMMAND_WORD="bye";
 
-    public static final String MESSAGE_USAGE="||"+COMMAND_WORD+": Exit the program and save to txt file";
+    public static final String HELP_MESSAGE="-- "+COMMAND_WORD+": Exit the program and save to txt file";
 
     @Override
     public void execute(){
