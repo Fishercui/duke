@@ -1,7 +1,6 @@
 package task;
-import java.util.*;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Iterator;
@@ -12,18 +11,15 @@ public class TaskList implements Iterable<Task>{
 
     public TaskList(){ }
 
-    public TaskList(Task[] Tasks){
-        final List<Task> initialTasks= Arrays.asList(Tasks);
-        taskList.addAll(initialTasks);
-    }
 
     public TaskList(Collection<Task> Tasks) {
         taskList.addAll(Tasks);
     }
 
     public TaskList(TaskList load) {
-
+        taskList.addAll(load.taskList);
     }
+
 
     public void addTask(Task toAdd) throws DuplicateTaskException {
         if(contains(toAdd)){
