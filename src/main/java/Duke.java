@@ -16,6 +16,7 @@ public class Duke {
 
     public Duke(String filePath) {
         ui = new Ui();
+        filePath = "D:/NUS/TIC2002/Repo/Project/data/duke.txt";
         try {
             storage = new Storage(filePath);
             tasks = new TaskList(storage.load());
@@ -26,7 +27,7 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke(System.getProperty("user.dir")+"/data/duke.txt").run();
+        new Duke("D:/NUS/TIC2002/Repo/Project/data/duke.txt").run();
     }
 
     public void run() {
