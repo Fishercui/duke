@@ -3,17 +3,18 @@ package command;
 public class HelpCommand extends Command {
     public static final String COMMAND_WORD="help";
 
-    public static final String MESSAGE_USAGE = "||"+COMMAND_WORD + ": Shows command instructions.";
+    public static final String HELP_MESSAGE = "-- "+COMMAND_WORD + ": Shows command instructions.";
 
     @Override
     public void execute(){
 
-        System.out.println(AddCommand.MESSAGE_USAGE
-                + "\n" + ClearCommand.MESSAGE_USAGE
-                + "\n" + DeleteCommand.MESSAGE_USAGE
-                + "\n" + DoneCommand.MESSAGE_USAGE
-                + "\n" + HelpCommand.MESSAGE_USAGE
-                + "\n" + ListCommand.MESSAGE_USAGE
-                + "\n" + ExitCommand.MESSAGE_USAGE);
+        System.out.println(AddCommand.HELP_MESSAGE
+                + "\n" + ClearCommand.HELP_MESSAGE
+                + "\n" + DeleteCommand.HELP_MESSAGE
+                + "\n" + DoneCommand.HELP_MESSAGE
+                + "\n" + FindCommand.HELP_MESSAGE
+                + "\n" + HelpCommand.HELP_MESSAGE
+                + "\n" + ListCommand.HELP_MESSAGE
+                + "\n" + ExitCommand.HELP_MESSAGE);
     }
 }
