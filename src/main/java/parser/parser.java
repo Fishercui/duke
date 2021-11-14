@@ -15,7 +15,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class parser {
-
+    /**
+     * Separation for command word and args.
+     */
     public static final Pattern Command_Format= Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
     public static final Pattern Keyword_Format = Pattern.compile("(?<keywords>\\S+(?:\\s+\\S+)*)");
 
@@ -32,12 +34,17 @@ public class parser {
             "(?<year>\\d{4})"+"-"+"(?<month>\\d{2})"+"-"+"(?<day>\\d{2})"+
             " "+"(?<hour>\\d{2})(?<minute>\\d{2})");
 
-
+    /**
+     * Parses user input into command for execution.
+     *
+     * @param inputCommand full user input string
+     * @return the command based on the user input
+     */
     public Command parse(String inputCommand) {
         final Matcher matcher = Command_Format.matcher(inputCommand.trim());
         if (!matcher.matches()) {
             return new IncorrectCommand("This is a incorrect format, " +
-                    " you may type the list to see all the commands.");
+                    " you may type 'help' to see the correct format.");
         }
 
         final String commandWord = matcher.group("commandWord");
@@ -71,16 +78,26 @@ public class parser {
         }
 
     }
-
+    /**
+     * Parses arguments in the context of the add todotask command.
+     *
+     * @param args full command args string
+     * @return the prepared command
+     */
     private Command prepareAddTodo(String args) {
         return new AddCommand(new ToDo(args.trim()));
     }
-
+    /**
+     * Parses arguments in the context of the add deadline task command.
+     *
+     * @param args full command args string
+     * @return the prepared command
+     */
     private Command prepareAddDeadline(String args) {
         final Matcher matcher= Deadline_Format.matcher(args.trim());
         if (!matcher.matches()) {
             return new IncorrectCommand("This is a incorrect format, " +
-                    " you may type 'help' to see all the commands.");
+                    " you may type 'help' to see the correct format.");
         }
         return new AddCommand(new Deadline(matcher.group("deadlineDesc"),
                 LocalDateTime.of(Integer.parseInt(matcher.group("byYear")),
@@ -89,12 +106,17 @@ public class parser {
                         Integer.parseInt(matcher.group("byHour")),
                         Integer.parseInt(matcher.group("byMin"))) ));
     }
-
+    /**
+     * Parses arguments in the context of the add Event task command.
+     *
+     * @param args full command args string
+     * @return the prepared command
+     */
     private Command prepareAddEvent(String args) {
         final Matcher matcher= Event_Format.matcher(args.trim());
         if (!matcher.matches()) {
             return new IncorrectCommand("This is a incorrect format, " +
-                    " you may type 'help' to see all the commands.");
+                    " you may type 'help' to see the correct format.");
         }
 
         return new AddCommand(new Event(matcher.group("eventDesc"),
@@ -104,7 +126,12 @@ public class parser {
                         Integer.parseInt(matcher.group("atHour")),
                         Integer.parseInt(matcher.group("atMin"))) ));
     }
-
+    /**
+     * Parses argument in the context of the mark a task as done command.
+     *
+     * @param args full command args string
+     * @return the prepared command
+     */
     private Command prepareDone(String args) {
         try {
             Matcher matcher =Done_Format.matcher(args.trim());
@@ -123,11 +150,16 @@ public class parser {
             }
         }catch (ParseException pe){
             return new IncorrectCommand("This is a incorrect format, " +
-                    " you may type 'help' to see all the commands.");
+                    " you may type 'help' to see the correct format.");
         }
 
     }
-
+    /**
+     * Parses argument in the context of the delete a task command.
+     *
+     * @param args full command args string
+     * @return the prepared command
+     */
     private Command prepareDelete(String args) {
         try {
             final int targetIndex = parseArgsAsDisplayedIndex(args);
@@ -135,10 +167,15 @@ public class parser {
             return new DeleteCommand(targetIndex);
         }catch (ParseException pe){
             return new IncorrectCommand("This is a incorrect format, " +
-                    " you may type the list to see all the commands.");
+                    " you may type 'help' to see the correct format.");
         }
     }
-
+    /**
+     * Parses argument in the context for find task command.
+     *
+     * @param args full command args string
+     * @return the prepared command
+     */
     private Command prepareFind(String args) {
         final  Matcher matcher=Keyword_Format.matcher((args.trim()));
         if(!matcher.matches()){
