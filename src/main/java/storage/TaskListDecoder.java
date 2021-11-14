@@ -12,13 +12,13 @@ import java.util.regex.Pattern;
 
 public class TaskListDecoder {
 
-    public static final Pattern TODO_TXT_FILE_FORMAT=Pattern.compile("T[|](?<isDone>[01])[|](?<taskDesc>[^|]+)[|]" +
+    public static final Pattern To_Format=Pattern.compile("T[|](?<isDone>[01])[|](?<taskDesc>[^|]+)[|]" +
             "(?<finishTime>[^|]*)");
-    public static final Pattern DEADLINE_TXT_FILE_FORMAT=Pattern.compile("D[|](?<isDone>[01])" +
+    public static final Pattern Deadline_Format=Pattern.compile("D[|](?<isDone>[01])" +
             "[|](?<taskDesc>[^|]+)" +
             "[|](?<planTime>[^|]+)[|]"+
             "(?<finishTime>[^|]*)");
-    public static final Pattern EVENT_TXT_FILE_FORMAT=Pattern.compile("E[|](?<isDone>[01])" +
+    public static final Pattern Event_Format=Pattern.compile("E[|](?<isDone>[01])" +
             "[|](?<taskDesc>[^|]+)" +
             "[|](?<planTime>[^|]+)[|]"+
             "(?<finishTime>[^|]*)");
@@ -33,9 +33,9 @@ public class TaskListDecoder {
     }
 
     private static Task decodeTaskFromString(String encodedTask) throws IllegalValueException{
-        final Matcher matcherTodo = TODO_TXT_FILE_FORMAT.matcher(encodedTask.trim());
-        final Matcher matcherDeadline = DEADLINE_TXT_FILE_FORMAT.matcher(encodedTask.trim());
-        final Matcher matcherEvent = EVENT_TXT_FILE_FORMAT.matcher(encodedTask.trim());
+        final Matcher matcherTodo = To_Format.matcher(encodedTask.trim());
+        final Matcher matcherDeadline = Deadline_Format.matcher(encodedTask.trim());
+        final Matcher matcherEvent = Event_Format.matcher(encodedTask.trim());
 
         boolean isDone;
         if (matcherTodo.matches()) {
