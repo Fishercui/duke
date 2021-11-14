@@ -3,7 +3,10 @@ package command;
 import task.Task;
 import java.util.*;
 public class FindCommand extends Command {
-
+    /**
+     * Finds and lists all tasks with the keyword.
+     * Keyword is case sensitive.
+     */
     public static final String COMMAND_WORD="find";
 
     public static final String HELP_MESSAGE= "-- "+COMMAND_WORD+": finds the specific tasks based on the keywords you entered.\n" +
