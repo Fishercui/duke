@@ -1,7 +1,1 @@
-T|1|eat|2021-11-14 0940
-T|0|task2|
-T|0|task4|
-D|0|return book|2019-12-01 1200|
-E|0|project meeting|2019-12-01 1200|
-T|0|read book|
-T|0|sell book|
+T|1|eat|2019-12-01 1600
