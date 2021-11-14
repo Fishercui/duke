@@ -5,7 +5,9 @@ import java.time.format.DateTimeFormatter;
 
 public class DoneCommand extends Command {
     public static final String COMMAND_WORD="done";
-
+    /**
+     * mark a task with the same index.
+     */
     public static final String HELP_MESSAGE="-- "+COMMAND_WORD+": mark a task as done status.\n" +
             "<< Example: done 1 >>";
     private LocalDateTime finishTime;
