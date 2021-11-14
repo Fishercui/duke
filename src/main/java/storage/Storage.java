@@ -11,14 +11,8 @@ import java.io.FileNotFoundException;
 
 public class Storage {
 
-    public static final String DEFAULT_STORAGE_FILEPATH = "duke.txt";
-
     public final Path path;
 
-
-    public Storage() throws InvalidStorageFilePathException {
-        this(DEFAULT_STORAGE_FILEPATH);
-    }
 
 
     public Storage(String filePath) throws InvalidStorageFilePathException{
