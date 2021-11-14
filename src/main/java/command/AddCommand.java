@@ -10,9 +10,12 @@ public class AddCommand extends Command{
     public static final String COMMAND_WORD2 = "deadline";
     public static final String COMMAND_WORD3 = "event";
 
-    public static final String MESSAGE_USAGE=  "||"+COMMAND_WORD1+": Adds a Todo Task to the task list. \n" +
-            "||"+ COMMAND_WORD2+": Adds a Deadline task to the task list.\n" +
-            "||"+ COMMAND_WORD3+": Adds an Event task to the task list.\n";
+    public static final String HELP_MESSAGE=  "-- "+COMMAND_WORD1+": Adds a Todo Task to the task list. \n" +
+            "<< Example: todo borrow book >>\n" +
+            "-- "+ COMMAND_WORD2+": Adds a Deadline task to the task list.\n" +
+            "<< Example: return book by/2019-12-01 1200 >>\n" +
+            "-- "+ COMMAND_WORD3+": Adds an Event task to the task list.\n" +
+            "<< Example: project meeting at/2019-12-01 1200 >>";
     private final Task toAdd;
 
     public AddCommand(Task toAdd ) {
